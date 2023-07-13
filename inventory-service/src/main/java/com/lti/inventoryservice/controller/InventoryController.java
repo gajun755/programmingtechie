@@ -1,5 +1,6 @@
 package com.lti.inventoryservice.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,9 +24,27 @@ public class InventoryController {
 	
 	@GetMapping
 	@ResponseStatus(code = HttpStatus.OK)
-	public List<InventoryResponse> isInStock(@RequestParam List<String> skuCode) {
+	public List<InventoryResponse> isInStock(@RequestParam String skuCode) {
+	
+		List<String> list=new ArrayList<>();
+			if(skuCode.startsWith("[")) {
+		String result= skuCode.substring(1,skuCode.length()-1);
+		String[] strArr=result.split(",");
 		
-		System.out.println("Inside inventory controller"+skuCode);
-		return inventoryService.isInStock(skuCode);
+			for(String s:strArr) {
+			list.add(s.trim());
+		}
+		
+		 return inventoryService.isInStock(list);
+		 
+			}
+			else {
+			for(String s:skuCode.split(",")) {
+				list.add(s);
+			}
+		
+				return inventoryService.isInStock(list);
+			}
+				//return null;
 	}
 }

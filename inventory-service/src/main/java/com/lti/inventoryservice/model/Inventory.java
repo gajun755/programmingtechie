@@ -33,6 +33,10 @@ public class Inventory {
 		public void setQuantity(Integer quantity) {
 			this.quantity = quantity;
 		}
+		@Override
+		public String toString() {
+			return "Inventory [id=" + id + ", skuCode=" + skuCode + ", quantity=" + quantity + "]";
+		}
 		
 		
 

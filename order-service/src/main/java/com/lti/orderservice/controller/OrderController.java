@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lti.orderservice.dto.OrderRequest;
+import com.lti.orderservice.exeption.ProductNotFound;
 import com.lti.orderservice.service.OrderService;
 
 @RestController
@@ -22,7 +23,7 @@ public class OrderController {
 	
 	@PostMapping
 	@ResponseStatus(code = HttpStatus.CREATED)
-	public String placeOrder(@RequestBody OrderRequest orderRequest) {
+	public String placeOrder(@RequestBody OrderRequest orderRequest) throws ProductNotFound {
 		
 		System.out.println("OrderRequest"+orderRequest.toString());
 		orderService.placeOrder(orderRequest);

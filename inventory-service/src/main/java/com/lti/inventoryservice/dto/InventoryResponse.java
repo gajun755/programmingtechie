@@ -18,6 +18,10 @@ public class InventoryResponse {
 		public void setInStock(boolean isInStock) {
 			this.isInStock = isInStock;
 		}
+		@Override
+		public String toString() {
+			return "InventoryResponse [skuCode=" + skuCode + ", isInStock=" + isInStock + "]";
+		}
 		
 		
 		
